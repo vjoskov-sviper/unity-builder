@@ -113,6 +113,7 @@ if [ $UNITY_EXIT_CODE -eq 0 ]; then
   echo "Activation complete."
 else
   # Activation failed so exit with the code from the license verification step
+  echo "$ACTIVATION_OUTPUT"
   echo "Unclassified error occured while trying to activate license."
   echo "Exit code was: $UNITY_EXIT_CODE"
   exit $UNITY_EXIT_CODE
