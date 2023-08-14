@@ -68,7 +68,7 @@ class Docker {
   }
 
   static getWindowsCommand(image: any, parameters: any): string {
-    const { workspace, actionFolder, unitySerial, gitPrivateToken } = parameters;
+    const { workspace, actionFolder, sshAgent, unitySerial, gitPrivateToken } = parameters;
 
     return `docker run \
             --workdir c:/github/workspace \
@@ -79,6 +79,12 @@ class Docker {
             ${gitPrivateToken ? `--env GIT_PRIVATE_TOKEN="${gitPrivateToken}"` : ''} \
             --volume "${workspace}":"c:/github/workspace" \
             --volume "c:/regkeys":"c:/regkeys" \
+            ${sshAgent ? `--volume ${sshAgent}:c:/ssh-agent` : ''} \
+            ${
+              sshAgent
+                ? `--volume C:/Users/ec2-user/.ssh/known_hosts:c:/root/.ssh/known_hosts`
+                : ''
+            } \
             --volume "C:/Program Files (x86)/Microsoft Visual Studio":"C:/Program Files (x86)/Microsoft Visual Studio" \
             --volume "C:/Program Files (x86)/Windows Kits":"C:/Program Files (x86)/Windows Kits" \
             --volume "C:/ProgramData/Microsoft/VisualStudio":"C:/ProgramData/Microsoft/VisualStudio" \
