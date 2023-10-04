@@ -5,6 +5,9 @@ Get-ChildItem -Path c:\regkeys -File | Foreach {reg import $_.fullname}
 # Register the Visual Studio installation so Unity can find it
 regsvr32 C:\ProgramData\Microsoft\VisualStudio\Setup\x64\Microsoft.VisualStudio.Setup.Configuration.Native.dll
 
+# Install Dependencies
+& "c:\steps\dependencies.ps1"
+
 # Setup Git Credentials
 & "c:\steps\set_gitcredential.ps1"
 
