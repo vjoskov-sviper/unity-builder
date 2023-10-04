@@ -89,6 +89,8 @@ class Docker {
     const { workspace, actionFolder, unitySerial, gitPrivateToken, dockerWorkspacePath } = parameters;
 
     return `docker run \
+            --isolation process \
+            --device class/5B45201D-F2F2-4F3B-85BB-30FF1F953599 \
             --workdir c:${dockerWorkspacePath} \
             --rm \
             ${ImageEnvironmentFactory.getEnvVarString(parameters)} \
