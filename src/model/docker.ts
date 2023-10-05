@@ -91,6 +91,7 @@ class Docker {
     return `docker run \
             --isolation process \
             --device class/5B45201D-F2F2-4F3B-85BB-30FF1F953599 \
+            --gpus all \
             --workdir c:${dockerWorkspacePath} \
             --rm \
             ${ImageEnvironmentFactory.getEnvVarString(parameters)} \
